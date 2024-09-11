@@ -35,8 +35,8 @@ export default function OptionsDropdown({
   id,
   enabled,
 }: {
-  id: string;
-  enabled: boolean;
+  readonly id: string;
+  readonly enabled: boolean;
 }) {
   // delete action
   const { execute: executeDelete } = useAction(deleteEndpoint, {

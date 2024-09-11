@@ -1,6 +1,6 @@
 "use client";
 
-import { Lead } from "@/lib/db";
+import type { Lead } from "@/lib/db";
 import { Button } from "../ui/button";
 import { parse } from "json2csv";
 import { toast } from "sonner";
@@ -14,14 +14,14 @@ type ExportCSVProps = {
   }[];
 };
 
-export default function ExportCSV({ id, leads, schema }: ExportCSVProps) {
+export default function ExportCSV({ id, leads, schema }: Readonly<ExportCSVProps>) {
   const exportToCSV = (): void => {
     try {
       const transformedLeads = leads.map((lead) => {
         const transformedLead: { [key: string]: any } = {};
-        schema.forEach((col) => {
+        for (const col of schema) {
           transformedLead[col.key] = lead.data[col.key];
-        });
+        }
         return transformedLead;
       });
 

@@ -19,7 +19,7 @@ const pageData = {
   description: "Create a new endpoint.",
 };
 
-export default async function Page() {
+export default function Page() {
   return (
     <>
       <Breadcrumb className="h-[67.63px] bg-muted/50 rounded-lg border flex items-center justify-between p-6">

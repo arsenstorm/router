@@ -9,7 +9,7 @@ const pageData = {
   description: "Get help with Router.so",
 };
 
-export default async function Page() {
+export default function Page() {
   return (
     <>
       <Breadcrumbs pageName={pageData?.name} />

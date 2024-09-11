@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -55,7 +54,7 @@ function HelpFormContent() {
   // Define the submit handler
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Handle form submission
-    console.log(values);
+    // TODO: Add form submission logic
     toast.success("Thank you. We will get back to you shortly.");
   }
 
