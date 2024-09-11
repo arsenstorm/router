@@ -1,10 +1,10 @@
 import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
+	Breadcrumb,
+	BreadcrumbItem,
+	BreadcrumbLink,
+	BreadcrumbList,
+	BreadcrumbPage,
+	BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Header } from "@/components/parts/header";
 import EditForm from "@/components/groups/endpoints/edit-form";
@@ -17,55 +17,59 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 const pageData = {
-  name: "Edit Endpoint",
-  title: "Edit Your Endpoint",
-  description: "Edit your endpoint.",
+	name: "Edit Endpoint",
+	title: "Edit Your Endpoint",
+	description: "Edit your endpoint.",
 };
 
-export default async function Page({ params }: { params: { id: string } }) {
-  // fetch endpoint data
-  const endpoint = await getEndpointById({ id: params.id });
-  const { data: endpointData, serverError } = endpoint || {};
+export default async function Page({
+	params,
+}: {
+	readonly params: { readonly id: string };
+}) {
+	// fetch endpoint data
+	const endpoint = await getEndpointById({ id: params.id });
+	const { data: endpointData, serverError } = endpoint || {};
 
-  // check for errors
-  if (!endpointData || serverError) notFound();
+	// check for errors
+	if (!endpointData || serverError) notFound();
 
-  return (
-    <>
-      <Breadcrumb className="h-[67.63px] bg-muted/50 rounded-lg border flex items-center justify-between p-6">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">
-              <Home size={20} />
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/endpoints">Endpoints</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <Link href={`/endpoints/${params.id}`}>
-              <BreadcrumbPage className="px-2 py-1 bg-accent rounded-sm">
-                {params.id}
-              </BreadcrumbPage>
-            </Link>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>Edit</BreadcrumbItem>
-        </BreadcrumbList>
-        <Image
-          className="hover:animate-spin dark:invert"
-          src={Icon}
-          width={24}
-          height={24}
-          alt="Router.so Icon"
-        />
-      </Breadcrumb>
-      <PageWrapper>
-        <Header title={pageData?.title}>{pageData?.description}</Header>
-        <EditForm id={params.id} endpoint={endpointData} />
-      </PageWrapper>
-    </>
-  );
+	return (
+		<>
+			<Breadcrumb className="h-[67.63px] bg-muted/50 rounded-lg border flex items-center justify-between p-6">
+				<BreadcrumbList>
+					<BreadcrumbItem>
+						<BreadcrumbLink href="/">
+							<Home size={20} />
+						</BreadcrumbLink>
+					</BreadcrumbItem>
+					<BreadcrumbSeparator />
+					<BreadcrumbItem>
+						<BreadcrumbLink href="/endpoints">Endpoints</BreadcrumbLink>
+					</BreadcrumbItem>
+					<BreadcrumbSeparator />
+					<BreadcrumbItem>
+						<Link href={`/endpoints/${params.id}`}>
+							<BreadcrumbPage className="px-2 py-1 bg-accent rounded-sm">
+								{params.id}
+							</BreadcrumbPage>
+						</Link>
+					</BreadcrumbItem>
+					<BreadcrumbSeparator />
+					<BreadcrumbItem>Edit</BreadcrumbItem>
+				</BreadcrumbList>
+				<Image
+					className="hover:animate-spin dark:invert"
+					src={Icon}
+					width={24}
+					height={24}
+					alt="Router.so Icon"
+				/>
+			</Breadcrumb>
+			<PageWrapper>
+				<Header title={pageData?.title}>{pageData?.description}</Header>
+				<EditForm id={params.id} endpoint={endpointData} />
+			</PageWrapper>
+		</>
+	);
 }

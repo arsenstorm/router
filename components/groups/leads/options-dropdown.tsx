@@ -25,7 +25,7 @@ import { useAction } from "next-safe-action/hooks";
 import { parseActionError } from "@/lib/data/safe-action";
 import { toast } from "sonner";
 
-export default function OptionsDropdown({ id }: { id: string }) {
+export default function OptionsDropdown({ id }: { readonly id: string }) {
   const { execute } = useAction(deleteLead, {
     onSuccess() {
       toast.success("Successfully deleted lead.");

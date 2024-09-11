@@ -13,7 +13,7 @@ import { Button } from "../ui/button";
 
 export default async function AccountWidget() {
   const session = await auth();
-  if (!session) return;
+  if (!session) return null;
 
   return (
     <DropdownMenu>

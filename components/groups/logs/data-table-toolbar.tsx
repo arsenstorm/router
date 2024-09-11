@@ -1,14 +1,14 @@
 "use client";
 
 import { Cross2Icon } from "@radix-ui/react-icons";
-import { Table } from "@tanstack/react-table";
+import type { Table } from "@tanstack/react-table";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DataTableViewOptions } from "@/components/data-table/data-table-view-options";
 import { DataTableFacetedFilter } from "@/components/data-table/data-table-faceted-filter";
 import { CircleCheck, CircleX, Webhook, CodeXml } from "lucide-react";
-import { Endpoint } from "@/lib/db";
+import type { Endpoint } from "@/lib/db";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -44,7 +44,7 @@ const postTypeFilter = [
 export function DataTableToolbar<TData>({
   table,
   endpoints,
-}: DataTableToolbarProps<TData>) {
+}: Readonly<DataTableToolbarProps<TData>>) {
   const endpointFilters = endpoints.map((endpoint) => ({
     value: endpoint.name,
     label: endpoint.name,

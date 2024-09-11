@@ -1,11 +1,10 @@
 "use client";
 
-import { Endpoint } from "@/lib/db";
-import { ColumnDef } from "@tanstack/react-table";
+import type { Endpoint } from "@/lib/db";
+import type { ColumnDef } from "@tanstack/react-table";
 import { DataTableColumnHeader } from "@/components/data-table/header";
 import { Badge } from "@/components/ui/badge";
-import { File } from "lucide-react";
-import { Eye } from "lucide-react";
+import { File, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
@@ -39,7 +38,7 @@ export const columns: ColumnDef<Endpoint>[] = [
       const id: string = row.getValue("id");
       return (
         <Link href={`/endpoints/${row.original.id}`}>
-          <span className="text-muted-foreground text-sm"></span> {id}
+          <span className="text-muted-foreground text-sm">{id}</span>
         </Link>
       );
     },

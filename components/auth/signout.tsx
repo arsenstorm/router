@@ -2,10 +2,12 @@
 
 import { signOut } from "next-auth/react";
 
-export default function SignOut({ children }: { children: React.ReactNode }) {
-  return (
-    <button className="w-full" onClick={() => signOut()}>
-      {children}
-    </button>
-  );
+export default function SignOut({
+	children,
+}: { readonly children: React.ReactNode }) {
+	return (
+		<button className="w-full" onClick={() => signOut()} type="button">
+			{children}
+		</button>
+	);
 }

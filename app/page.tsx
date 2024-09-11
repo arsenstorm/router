@@ -36,7 +36,6 @@ export default async function Page() {
   // fetch number of leads for user this month
   const usage = await getUsageForUser();
   const { data: usageData, serverError: usageServerError } = usage || {};
-  console.log(usageData);
 
   // check for errors
   if (

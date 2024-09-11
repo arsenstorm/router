@@ -8,7 +8,7 @@ type LayoutProps = {
   className?: string;
 };
 
-const Layout = ({ children, className }: LayoutProps) => {
+const Layout = ({ children, className }: Readonly<LayoutProps>) => {
   return (
     <html
       lang="en"
@@ -35,7 +35,7 @@ type MainProps = {
   id?: string;
 };
 
-const Main = ({ children, className, id }: MainProps) => {
+const Main = ({ children, className, id }: Readonly<MainProps>) => {
   return (
     <main
       className={cn(
@@ -63,7 +63,7 @@ type SectionProps = {
   id?: string;
 };
 
-const Section = ({ children, className, id }: SectionProps) => {
+const Section = ({ children, className, id }: Readonly<SectionProps>) => {
   return (
     <section className={cn("py-12", className)} id={id}>
       {children}
@@ -78,7 +78,7 @@ type ContainerProps = {
   id?: string;
 };
 
-const Container = ({ children, className, id }: ContainerProps) => {
+const Container = ({ children, className, id }: Readonly<ContainerProps>) => {
   return (
     <div className={cn("max-w-5xl mx-auto", "p-6 sm:p-8", className)} id={id}>
       {children}
@@ -93,7 +93,7 @@ type ArticleProps = {
   id?: string;
 };
 
-const Article = ({ children, className, id }: ArticleProps) => {
+const Article = ({ children, className, id }: Readonly<ArticleProps>) => {
   return (
     <article
       className={cn(

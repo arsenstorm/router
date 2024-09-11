@@ -23,7 +23,7 @@ export async function POST(
     const headersList = headers();
     const authorization = headersList.get("authorization");
 
-    if (!authorization || !authorization.startsWith("Bearer ")) {
+    if (!authorization?.startsWith("Bearer ")) {
       return NextResponse.json(
         { message: "Unauthorized. No valid bearer token provided." },
         { status: 401 }
@@ -114,9 +114,9 @@ export async function POST(
       if (!webhookResponse.ok) {
         const contentType = webhookResponse.headers.get("Content-Type");
         let errorData;
-        if (contentType && contentType.includes("application/json")) {
+        if (contentType?.includes("application/json")) {
           errorData = await webhookResponse.json();
-        } else if (contentType && contentType.includes("text")) {
+        } else if (contentType?.includes("text")) {
           errorData = await webhookResponse.text();
         } else {
           errorData = "Received non-text response";
@@ -196,7 +196,7 @@ export async function GET(
       );
 
       return NextResponse.redirect(
-        new URL(endpoint?.failUrl || referer || "/fail")
+        new URL(endpoint?.failUrl ?? referer ?? "/fail")
       );
     }
 
@@ -232,9 +232,9 @@ export async function GET(
       if (!webhookResponse.ok) {
         const contentType = webhookResponse.headers.get("Content-Type");
         let errorData;
-        if (contentType && contentType.includes("application/json")) {
+        if (contentType?.includes("application/json")) {
           errorData = await webhookResponse.json();
-        } else if (contentType && contentType.includes("text")) {
+        } else if (contentType?.includes("text")) {
           errorData = await webhookResponse.text();
         } else {
           errorData = "Received non-text response";
@@ -251,7 +251,7 @@ export async function GET(
     }
 
     return NextResponse.redirect(
-      new URL(endpoint?.successUrl || referer || "/success")
+      new URL(endpoint?.successUrl ?? referer ?? "/success")
     );
   } catch (error: unknown) {
     await createLog("error", "http", getErrorMessage(error), params.id);
